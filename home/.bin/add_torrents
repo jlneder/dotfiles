@@ -1,0 +1,25 @@
+#!/bin/dash
+# require dash, transmission-daemon
+
+torrent_folder="/home/jn/Downloads/Torrents"
+download_folder="/home/jn/Downloads"
+
+add_torrent(){
+  if echo "$1" | grep -iqv "\.torrent$" ; then
+    exit 0
+  fi
+  dir=$(basename $(dirname "$1"))
+
+  if [ "$dir" = "Torrents" ]; then
+    transmission-remote --no-start-paused -a "$1" -w "$download_folder"
+  else
+    if [ "$dir" = "Movies" ]; then
+      transmission-remote --start-paused -a "$1" -w "$download_folder/$dir"
+    else
+      transmission-remote --no-start-paused -a "$1" -w "$download_folder/$dir"
+    fi
+  fi
+  rm -f "$1"
+}
+
+add_torrent "$1"

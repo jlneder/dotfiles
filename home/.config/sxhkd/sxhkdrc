@@ -1,0 +1,116 @@
+#
+# bspwm hotkeys
+#
+
+super + shift + l
+    i3lock -d -c 000000
+
+super + alt + {_,shift + }Escape
+	{bspc query -T > "$BSPWM_TREE"; \
+	    bspc query -H > "$BSPWM_HISTORY"; \
+	        bspc quit,\
+	 bspc quit 1}
+
+super + x
+	bspc window -c
+
+super + t
+	bspc desktop -l next
+
+super + b
+	bspc desktop -B
+
+super + {s,f}
+	bspc window -t {floating,fullscreen}
+
+super + {grave,Tab}
+	bspc {window,desktop} -f last
+
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}
+
+super + apostrophe
+	bspc window -s last
+
+super + {o,i}
+	bspc control --record-history off; \
+	bspc window {older,newer} -f; \
+	bspc control --record-history on
+
+super + y
+	bspc window -w last.manual
+
+super + m
+	bspc window -s biggest
+
+super + {_,shift + }{Left,Down,Up,Right}
+    /home/jn/.config/sxhkd/functions move_windows {f,s} {left,down,up,right}
+
+super + alt + {Left,Right}
+    SIDE={prev,next}; \
+    W=$(bspc query --windows --window focused); \
+    bspc window -d $SIDE; \
+    bspc desktop -f $SIDE; \
+    bspc window -f $W
+
+super + {_,shift + }w
+	bspc window -f {next,prev}
+
+super + {comma,period}
+	bspc desktop -C {backward,forward}
+
+super + bracket{left,right}
+	bspc desktop -f {prev,next}
+
+super + ctrl + {h,j,k,l}
+	bspc window -p {left,down,up,right}
+
+super + ctrl + {_,shift + }space
+	bspc {window -p cancel,desktop -c}
+
+super + alt + {h,j,k,l}
+	bspc window -e {left -10,down +10,up -10,right +10}
+
+super + alt + shift + {h,j,k,l}
+	bspc window -e {right -10,up +10,down -10,left +10}
+
+super + ctrl + {1-9}
+	bspc window -r 0.{1-9}
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,window -d} ^{1-9,10}
+
+~button1
+	bspc pointer -g focus
+
+super + button{1-3}
+	bspc pointer -g {move,resize_side,resize_corner}
+
+super + !button{1-3}
+	bspc pointer -t %i %i
+
+super + @button{1-3}
+	bspc pointer -u
+
+#
+# wm independent hotkeys
+#
+
+super + c
+    bspc window --presel up; termite
+
+super + v
+    bspc window --presel up; gmrun
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+XF86AudioRaiseVolume
+    ponymix -N --max-volume 200 increase 2
+
+XF86AudioLowerVolume
+    ponymix -N --max-volume 200 decrease 2
+
+XF86AudioMute
+    ponymix -N --max-volume 200 toggle

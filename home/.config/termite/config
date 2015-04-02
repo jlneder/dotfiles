@@ -1,0 +1,112 @@
+[options]
+resize_grip = false
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+visible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = Pragmata Pro 8
+#font = monoOne 9
+#font = Source Code Pro 8
+#font = M+ 1m 8
+scrollback_lines = 30000
+search_wrap = true
+#icon_name = terminal
+#geometry = 640x480
+
+# "system", "on" or "off"
+cursor_blink = system
+
+# "block", "underline" or "ibeam"
+cursor_shape = block
+
+# $BROWSER is used by default
+#browser = firefox-developer-edition
+browser = google-chrome-stable
+
+# word characters used for word selection
+# (default if unset: all graphic non-punctuation/space characters)
+#word_chars = -A-Za-z0-9,./?%&#:_=+@~
+
+# set size hints for the window
+size_hints = false
+
+# emit escape sequences for other keys modified by Control
+#modify_other_keys = false
+
+[colors]
+foreground = #bea492
+foreground_bold = #bea492
+#foreground_dim = #888888
+#background = #3f3f3f
+background = rgba (18, 15, 12, 0.8)
+#background = #181512
+#cursor = #dcdccc
+
+# if unset, will reverse foreground and background
+highlight = #2f2f2f
+
+# colors from color0 to color254 can be set
+color0= #332d29
+color8= #817267
+color1= #8c644c
+color9= #9f7155
+color2=  #746C48
+color10=  #857B52
+color3=  #908A66
+color11=   #9C956E
+color4= #646a6d
+color12= #71777A
+color5= #605655
+color13= #656565
+color6= #4B5C5E
+color14= #556D70
+color7= #504339
+color15= #9a875f
+#color0= #101010
+#color1= #f13a21
+#color2= #93f91d
+#color3= #ffd00a
+#color4= #004f9e
+#color5= #ec0048
+#color6= #2aa7e7
+#color7= #f2f2f2
+#color8= #565658
+#color9= #ff361e
+#color10= #ffc005
+#color11= #93ff00
+#color12= #0071ff
+#color13= #ef0051
+#color14= #4bb8fd
+#color15= #a020f0
+#color0 = #3f3f3f
+#color1 = #705050
+#color2 = #60b48a
+#color3 = #dfaf8f
+#color4 = #506070
+#color5 = #dc8cc3
+#color6 = #8cd0d3
+#color7 = #dcdccc
+#color8 = #709080
+#color9 = #dca3a3
+#color10 = #c3bf9f
+#color11 = #f0dfaf
+#color12 = #94bff3
+#color13 = #ec93d3
+#color14 = #93e0e3
+#color15 = #ffffff
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=config cms=#%s

@@ -1,0 +1,19 @@
+[Default Applications]
+application/pdf=evince.desktop
+text/plain=gvim.desktop
+application/x-cbz=mcomix.desktop
+application/octet-stream=gvim.desktop
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/x-msvideo=mpv.desktop
+application/x-mimearchive=google-chrome.desktop
+
+[Added Associations]
+application/pdf=zathura.desktop;zathura-pdf-mupdf.desktop;
+text/plain=gvim.desktop;
+application/x-cbz=mcomix.desktop;
+application/octet-stream=gvim.desktop;
+video/mp4=mpv.desktop;
+video/x-matroska=mpv.desktop;
+video/x-msvideo=mpv.desktop;
+application/x-mimearchive=google-chrome.desktop;

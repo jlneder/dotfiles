@@ -1,0 +1,12 @@
+#!/bin/sh
+
+DOWNLOADING=`transmission-remote --list | grep ' Downloading ' | wc -l`
+UPANDDOWN=`transmission-remote --list | grep ' Up & Down ' | wc -l`
+
+if [ $DOWNLOADING -eq 0 ] && [ $UPANDDOWN -eq 0 ]
+then
+    sudo systemctl suspend
+else
+    echo "Still downloading $(($DOWNLOADING + $UPANDDOWN)) torrents."
+fi
+

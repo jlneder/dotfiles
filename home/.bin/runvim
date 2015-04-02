@@ -1,0 +1,8 @@
+#!/bin/sh
+count=`ps aux | grep -c vim`
+if [ $count -eq 1 ]; then
+    vim --servername VIM $@
+else
+    vim --remote-tab-silent $@
+    i3-msg "[title=VIM] focus"
+fi

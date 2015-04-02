@@ -1,0 +1,52 @@
+#!/bin/dash
+
+if [ -e "$BSPWM_TREE" ] ; then
+  bspc restore -T "$BSPWM_TREE" -H "$BSPWM_HISTORY" -S "$BSPWM_STACK"
+  rm "$BSPWM_TREE" "$BSPWM_HISTORY" "$BSPWM_STACK"
+else
+  bspc control --adopt-orphans
+fi
+
+bspc config top_padding 14 
+
+# Visual options
+bspc config split_ratio 0.61803398875
+bspc config border_width        2
+bspc config window_gap          4
+bspc config borderless_monocle  false
+bspc config gapless_monocle     false
+bspc config focus_follows_pointer true
+bspc config auto_alternate true
+bspc config auto_cancel true
+bspc config normal_border_color "#504339"
+bspc config active_border_color "#504339"
+bspc config focused_border_color "#817267"
+bspc config presel_border_color "#9a875f"
+bspc config urgent_border_color "#504339"
+bspc config focused_locked_border_color "#8c644c"
+bspc config normal_frame_opacity 0.0
+bspc config focused_frame_opacity 0.1
+bspc config rule_command "$XDG_CONFIG_HOME/bspwm/rules %d"
+bspc config adaptative_raise true
+
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+# Rules
+bspc rule -a Skype pseudo_tiled=on
+#bspc rule -a Spotify pseudo_tiled=on
+#bspc rule -a "Thunar" pseudo_tiled=on
+bspc rule -a Skype pseudo_tiled=on
+bspc rule -a File-roller floating=on
+bspc rule -a Transmission-gtk pseudo_tiled=on
+bspc rule -a Conky sticky=on manage=off lower=on
+bspc rule -a astime sticky=on
+#bspc rule -a feh floating=on manage=off
+bspc rule -a feh floating=on
+bspc rule -a Aurora desktop=^2
+bspc rule -a mpv floating=on
+bspc rule -a "File Operation Progress" floating=on
+bspc rule -a "plugin-container" floating=on center=on
+bspc rule -a fontforge floating=on
+
+exec /home/jn/.config/bspwm/panel/panel

@@ -1,0 +1,48 @@
+#!/bin/dash
+# require dash, inotify-tools
+
+torrent_folder="/home/jn/Downloads/Torrents"
+download_folder="/home/jn/Downloads"
+
+add_torrent(){
+    dir=$(basename $(dirname "$1"))
+
+    if [ "$dir" = "Torrents" ]; then
+    transmission-remote --no-start-paused -a "$1" -w "$download_folder"
+    else
+    if [ "$dir" = "Movies" ]; then
+        transmission-remote --start-paused -a "$1" -w "$download_folder/$dir"
+    else
+        transmission-remote --no-start-paused -a "$1" -w "$download_folder/$dir"
+    fi
+    fi       
+    rm -f "$1"
+}
+
+find "$torrent_folder" -name "*.torrent"|while read fname; do
+    echo "$fname"
+    add_torrent "$fname"
+done
+
+inotifywait -q -r -m $torrent_folder --format %w%f -e create,moved_to |
+while read file; do
+   if echo "$file" | grep -iq "\.torrent$" ; then
+     canonfile=$(readlink -f "$file")
+     add_torrent "$canonfile"
+     #if echo `basename "$file"` | grep -iq "^\._"; then
+      #echo
+      #else
+      #echo "Waiting for the file to close"
+      #while : ; do
+        #a=`stat -c%s "$canonfile"`
+        #sleep 0.5s
+        #if [ $a -gt 0 ]; then break; fi
+      #done
+      #while : ; do
+        #a=`stat -c%s "$canonfile"`
+        #sleep 5s
+        #if [ $a -eq `stat -c%s "$canonfile"` ]; then break; fi
+      #done
+     #fi
+   fi
+done

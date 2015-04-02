@@ -1,0 +1,19 @@
+#!/bin/dash
+
+move_windows(){
+    OP=$1
+    DIR=$2
+    W=$(bspc query --windows --window $DIR)
+    WF=$(bspc query --windows --window focused)
+    if [ "$OP" = "s" ] && ([ "$DIR" = "left" ] || [ "$DIR" = "right" ]) && [ "a$W" = "a" ]
+    then
+        [ "$DIR" = "left" ] && DIR="prev" || DIR="next"
+        bspc window -d $DIR
+        bspc desktop -f $DIR
+        bspc window -f $WF
+    else
+        bspc window "-$OP" $W
+    fi
+}
+
+"$@"

@@ -1,0 +1,48 @@
+#! /bin/dash
+#
+# Example panel for LemonBoy's bar
+
+while read -r line ; do
+    case $line in
+        S*)
+            sys_infos="%{r}${line#?}"
+            ;;
+        T*)
+            title="%{F#FF504339}  %{F#FF817267}bspwm"
+            ;;
+        W*)
+            wm_infos="%{c}"
+            IFS=':'
+            set -- ${line#?}
+            while [ $# -gt 0 ] ; do
+                item=$1
+                name=${item#?}
+                case $item in
+                    [OFU]*)
+                        # active desktop
+                        wm_infos="$wm_infos%{F#FF817267}  %{F-}%{B-}"
+                        ;;
+                    o*)
+                        # inactive but occupied desktop
+                        wm_infos="$wm_infos%{F#FF504339}  %{F-}"
+                        ;;
+                    f*)
+                        # inactive desktop
+                        wm_infos="$wm_infos%{F#FF504339} - %{F-}"
+                        ;;
+                    u*)
+                        # urgent desktop
+                        wm_infos="$wm_infos%{F#FF817267} %{F-} "
+                        ;;
+                    L*)
+                        # layout
+#                        layout=$(printf "%s" "${name}" | sed 's/\(.\).*/\U\1/')
+                        wm_infos="$wm_infos %{B#FF746C48}%{F#FF181512}$layout%{B-}%{F-}"
+                        ;;
+                esac
+                shift
+            done
+            ;;
+    esac
+    printf "%s\n" "$title$wm_infos$sys_infos"
+done

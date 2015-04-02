@@ -1,0 +1,10 @@
+#!/bin/bash
+
+jack_control start
+#sudo schedtool -R -p 20 `pidof jackdbus`
+jack_control eps realtime true
+jack_control ds alsa
+#jack_control dps device hw:HD2
+jack_control dps rate 44100
+jack_control dps nperiods 2
+jack_control dps period 64

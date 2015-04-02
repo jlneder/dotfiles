@@ -1,0 +1,3 @@
+#!/bin/bash
+yaourt -Sy
+package-query -QAu | wc -l > /dev/shm/package_updates

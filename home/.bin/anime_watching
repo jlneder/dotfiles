@@ -1,0 +1,165 @@
+#!/usr/bin/python2
+# requires python2-beatifulsoup4 python2-yaml python2-requests python2-feedparser
+
+import requests
+from bs4 import BeautifulSoup
+import argparse, feedparser, re, yaml
+from os.path import isfile
+import os,string
+
+# auxiliarity functions
+
+def get_myanimelist():
+    response = requests.get(URL, auth=(user, password), headers=user_agent)
+    #print response.content
+    soup = BeautifulSoup(response.content)
+    animes = soup('anime')
+    filtered_animes = []
+    animes
+
+    for anime in animes:
+        if anime.my_status.get_text() == '1':
+            filtered_animes.append((anime.series_title.get_text(),
+                                   int(anime.my_watched_episodes.get_text()),
+                                   anime.series_episodes.get_text()))
+
+    return filtered_animes
+
+            #print (anime.series_title.get_text() + " | " +
+                   #anime.my_watched_episodes.get_text() + " / " +
+                   #anime.series_episodes.get_text())
+            #return
+
+def get_torrent_links(titles, ep, total):
+    cats = [ ("1_37", "English Traslated Anime")
+           , ("1_38", "Non-English Traslated Anime")
+           ]
+    fansubs = ["HorribleSubs", "PuyaSubs", "DeadFish", "Commie", "Underwater", "Anime-Koi"]
+    regexs = []
+    for f in fansubs:
+        regexs.append(re.compile("\["+f+"\].*[ _\[]"+ep.zfill(2)+"[_ \[\]\.]"))
+
+    torrents_found = []
+    for cat in cats:
+        for title in titles:
+            s_title = title.replace(" ", "+")
+            nyaa_url = "http://www.nyaa.se/?page=rss&cats=" + cat[0] + "&term=" + s_title + "+" + ep.zfill(2)
+            torrents = feedparser.parse(nyaa_url)
+            status = torrents.get('status', False)
+            if status != 200:
+                print 'Search result not 200 (OK), received %s' % status
+                print "\"" + title + "\" is a bad search string, probably"
+                continue
+
+            for t in torrents.entries:
+                for reg in regexs:
+                    if reg.search(t.title):
+                        torrents_found.append(t)
+
+    #if len(torrents_found) == 0:
+        #print title + " (" + ep + "/" + total + ") not found"
+        #return
+
+    #min_size = 3000.0
+    #min_index = -1
+    #for idx, t in enumerate(torrents_found):
+        #sizes = re.findall(".*download\(s\) - ([0-9\.]+) MiB - .*", t.description)
+        #if len(sizes) == 0:
+            #print t.description
+            #continue
+        #else:
+            #size = float(sizes[0])
+            #if size <= min_size:
+                #min_index = idx
+                #min_size = size
+
+    max_size  = 0
+    max_index = -1
+    for idx, t in enumerate(torrents_found):
+        sizes = re.findall(".*download\(s\) - ([0-9\.]+) MiB - .*", t.description)
+        if len(sizes) == 0:
+            print t.description
+            continue
+        else:
+            size = float(sizes[0])
+            if size >= max_size:
+                max_index = idx
+                max_size = size
+
+
+    if max_index != -1:
+        t = torrents_found[max_index]
+        print title + "(" + ep + "/" + total + "):"
+        print t.title + "  " + str(max_size) + " MiB:"
+        print "   " + t.link
+        try:
+            response = requests.get(t.link, headers=user_agent)
+            download_dir = "/home/jn/Downloads/Torrents/Anime/"
+            valid_chars = "-_.():;{}[] %s%s" % (string.ascii_letters, string.digits)
+            valid_title = ''.join(c if c in valid_chars else '_' for c in t.title)
+            filename = download_dir + valid_title + ".torrent"
+            tfile = open(filename + ".temp", 'wb')
+            tfile.write(response.content)
+            tfile.close()
+            os.rename(filename + ".temp", filename)
+        except requests.exceptions.InvalidSchema as e:
+           print(e)
+
+
+parser = argparse.ArgumentParser(description='Get watching anime list from myanimelist.')
+parser.add_argument("-u", "--user", dest="user",
+                  help="myanimelist username", metavar="USERNAME")
+parser.add_argument("-p", "--password", dest="password",
+                  help="myanimelist password", metavar="PASSWORD")
+parser.add_argument("-c", "--config", dest="config", default=os.environ['HOME'] + "/.anime-get",
+                  help="config file", metavar="CONFIG")
+
+args = parser.parse_args()
+
+if isfile(args.config):
+    config_file = open(args.config, 'r')
+    config = yaml.load(config_file.read())
+    if config == None:
+        config = {}
+else:
+    config = {}
+
+if args.user == None:
+    if "user" in config:
+        user = config["user"]
+    else:
+        print "you didn't input a username."
+        exit()
+else:
+    user = args.user
+    config["user"] = args.user
+
+if args.password == None:
+    if "password" in config:
+        password = config["password"]
+    else:
+        print "you didn't input a password."
+        exit()
+else:
+    password = args.password
+    config["password"] = args.password
+
+if "animes" in config:
+    animes_config = config["animes"]
+else:
+    animes_config = {}
+
+user_agent = {'User-agent': 'api-team-f894427cc1c571f79da49605ef8b112f'}
+URL = 'http://myanimelist.net/malappinfo.php?u=' + user + '&status=all&type=anime'
+
+animes = get_myanimelist()
+for anime in animes:
+    if anime[0] not in animes_config:
+        animes_config[anime[0]]= [anime[0]]
+    get_torrent_links(animes_config[anime[0]], str(int(anime[1]) + 1), anime[2])
+
+config["animes"] = animes_config
+config_file = open(args.config, 'w')
+config_file.truncate()
+config_file.write(yaml.safe_dump(config))
+
