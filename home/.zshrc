@@ -1,3 +1,6 @@
+setopt share_history
+setopt HIST_IGNORE_ALL_DUPS
+export KEYTIMEOUT=1
 
 # color configuration
 export TERM=xterm-256color
@@ -56,9 +59,6 @@ fi
 
 #bindkey -v
 #bindkey '^r' history-incremental-search-backward
-setopt share_history
-export KEYTIMEOUT=1
-
 
 #using renamer.vim plugin
 alias mmv='nvim -c Renamer'
