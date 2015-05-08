@@ -11,16 +11,16 @@
 !URxvt*boldFont: xft:Anonymous Pro:bold:pixelsize=12
 !URxvt*font: xft:UniProg:pixelsize=11
 !URxvt*boldFont: xft:UniProg:bold:pixelsize=11
-!URxvt*font: xft:PragmataPro:pixelsize=11
-!URxvt*boldFont: xft:PragmataPro:bold:pixelsize=11
+URxvt*font: xft:Pragmata Pro:pixelsize=11
+URxvt*boldFont: xft:Pragmata Pro:bold:pixelsize=11
 !URxvt*font: xft:Mynaco:pixelsize=10
 !URxvt*boldFont: xft:Mynaco:bold:pixelsize=10
 !URxvt*font: xft:Monaco:pixelsize=10
 !URxvt*boldFont: xft:Monaco:bold:pixelsize=10
 !URxvt*font: xft:Ubuntu Mono:pixelsize=12
 !URxvt*boldFont: xft:Ubuntu Mono:bold:pixelsize=12
-URxvt*font: xft:Envy Code R:medium:pixelsize=9
-URxvt*boldFont: xft:Envy Code R:medium:bold:pixelsize=9
+!URxvt*font: xft:Envy Code R:medium:pixelsize=9
+!URxvt*boldFont: xft:Envy Code R:medium:bold:pixelsize=9
 !URxvt*font: xft:Inconsolata:pixelsize=10
 !URxvt*boldFont: xft:Inconsolata:bold:pixelsize=10
 URxvt*letterSpace: 0
@@ -53,7 +53,7 @@ URxvt.saveLines: 65535
 URxvt.scrollWithBuffer: true
 !URxvt.iconFile: /usr/share/icons/Faenza/apps/scalable/terminal.svg
 URxvt.perl-ext-common: default,matcher,clipboard
-URxvt.url-launcher: aurora
+URxvt.url-launcher: google-chrome-stable
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.cursorUnderline: true
