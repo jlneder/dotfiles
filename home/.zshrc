@@ -11,7 +11,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 # homeshick completions
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-homeshick --quiet refresh 10
+#homeshick --quiet refresh 10
 
 # load zgen
 source "${HOME}/.zgen/zgen.zsh"
@@ -45,7 +45,7 @@ if ! zgen saved; then
 
     # completions
     zgen load zsh-users/zsh-completions src
-    zgen load unixorn/autoupdate-zgen
+    #zgen load unixorn/autoupdate-zgen
 
     # theme
     zgen load willghatch/zsh-hooks
