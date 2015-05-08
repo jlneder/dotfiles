@@ -109,6 +109,7 @@ call plug#begin('~/.vim/plugged')
 " for a screencast that shows how Tabular.vim works.
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
+Plug 'Rykka/riv.vim' ", { 'for': 'mkd' }
 " Bbye allows you to do delete buffers (close files) without closing your
 " windows or messing up your layout.
 Plug 'moll/vim-bbye', { 'on': ['CtrlP', 'CtrlPBuffer'] }
@@ -125,6 +126,7 @@ endif
 " An ack/ag powered code search and view tool, in an intuitive way with fairly
 " more context
 Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
