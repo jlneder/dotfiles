@@ -9,7 +9,7 @@ set backspace=indent,eol,start  " allow backspacing over everything in insert mo
 set winaltkeys=no	" allow mapping of alt (meta) key shortcuts
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 set expandtab
 set smarttab
 set tabstop=4
