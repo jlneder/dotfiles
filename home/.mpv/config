@@ -1,20 +1,19 @@
 # Write your default config options here!
 vo = vdpau,vaapi,opengl
 ao = pulse
-#vd-lavc-fast=yes
-ass-use-margins=yes
+vd-lavc-fast=yes
+sub-use-margins=yes
 sub-text-font-size=60
 softvol=yes
 audio-pitch-correction=no
 fs=yes
-cache=67108864
+#cache=67108864
 geometry=50%:50%
 autofit-larger=90%x90%
 
 [vo.vdpau]
 # Use hardware decoding (might break playback of some h264 files)
 hwdec=vdpau
-vf-clr=yes
 #deinterlace=yes
 
 [anime-smallest]
