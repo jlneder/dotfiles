@@ -649,7 +649,7 @@ else
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
   let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-endif " has('neovim')
+endif " has('lua')
 
 " CtrlP keymappings
 nnoremap <leader>t :CtrlP<CR>
