@@ -62,3 +62,9 @@ fi
 
 #using renamer.vim plugin
 alias mmv='nvim -c Renamer'
+alias sub='subliminal -l en -s -f --'
+alias j="jump"
+alias s="bookmark"
+alias d="deletemark"
+alias p="showmarks"
+
