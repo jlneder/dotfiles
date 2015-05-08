@@ -101,7 +101,7 @@ call plug#begin('~/.vim/plugged')
 " My bundles
 
 " vim-plug selfupgrade
-Plug 'junegunn/vim-plug'
+"Plug 'junegunn/vim-plug', { 'frozen': 'yes' }
 
 
 " See "Aligning Text with
