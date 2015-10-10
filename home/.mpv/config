@@ -47,3 +47,17 @@ ovcopts-add = x264-params=b-adapt=2:b-pyramid=normal
 oac=libopus
 oacopts-add = b=64k,application=audio,ar=48000
 oafirst=yes
+
+[film-smallest-x265]
+profile-desc = "Film Smallest X265"
+#profile = high10
+ovc=libx265
+#vf-add = scale=w=-2:h=320:noup=2,scale=w=480:h=-2:noup=2
+sub-scale = 1.1
+ovcopts-add = preset=veryslow,crf=20,level=8.5
+#ovcopts-add = b-pyramid=normal,keyint_min=24,refs=6,bf=16,partitions=all
+ovcopts-add = strict=experimental
+ovcopts-add = x265-params=profile=main10:high-tier=true
+oac=libopus
+oacopts-add = b=64k,application=audio,ar=48000
+oafirst=yes
