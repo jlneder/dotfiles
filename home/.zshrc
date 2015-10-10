@@ -85,4 +85,16 @@ bindkey -M vicmd '^N' history-substring-search-down
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '^R' history-incremental-search-backward
 
+function fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
