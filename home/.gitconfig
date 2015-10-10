@@ -1,0 +1,9 @@
+[user]
+	email = jlneder@gmail.com
+	name = José Luis Neder
+[rerere]
+	enabled = true
+[push]
+	default = simple
+[commit]
+	template = /home/jn/.git_commit_msg.txt
