@@ -10,7 +10,7 @@ add_torrent(){
   fi
   dir=$(basename $(dirname "$1"))
 
-  if [ "$dir" = "Torrents" ]; then
+  if [ "$dir" = "Downloads" ]; then
     transmission-remote --no-start-paused -a "$1" -w "$download_folder"
   else
     if [ "$dir" = "Movies" ]; then
