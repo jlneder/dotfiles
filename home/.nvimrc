@@ -19,7 +19,7 @@ set autoindent
 set hlsearch		" highlight search patterns
 set smartcase		" ignore case when the pattern contains lowercase letters only
 set showtabline=1	" show tabs when there are more than one
-set number		" display line numbers
+set relativenumber		" display line relative numbers
 scriptencoding utf-8
 set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
 "set foldenable                  " auto fold code
