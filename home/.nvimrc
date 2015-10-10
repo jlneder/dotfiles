@@ -83,8 +83,8 @@ filetype plugin off
 filetype indent off
 
 if has("gui_running")
-  "set guifont=PragmataPro\ 8
-  set guifont=monoOne\ 8
+  set guifont=PragmataPro\ 8
+  "set guifont=monoOne\ 8
   "set guifont=Envy\ Code\ R\ 8
   " hide the menu in GUI mode
   set go+=M
@@ -181,6 +181,10 @@ Plug 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex', { 'for':
 
 Plug 'tomasr/molokai'
 Plug 'jpo/vim-railscasts-theme'
+Plug 'gilgigilgil/anderson.vim'
+Plug 'nielsmadan/harlequin'
+Plug 'rking/vim-detailed'
+
 "Plug 'AlxHnr/clear_colors'
 
 Plug 'jlneder/vim-colemak'
@@ -190,7 +194,7 @@ call plug#end()
 
 syntax on
 filetype plugin indent on
-colorscheme railscasts
+colorscheme molokai
 " COLORS {
 	" syntax highlighting groups
 	hi Comment      ctermfg=12
