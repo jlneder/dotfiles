@@ -118,8 +118,8 @@ if has('python')
   Plug 'FelikZ/ctrlp-py-matcher', { 'on': ['CtrlP', 'CtrlPBuffer'] }
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-if has('lua')
-  Plug 'Shougo/neocomplete.vim'
+if has('nvim')
+  "Plug 'Shougo/neocomplete.vim'
 else
   Plug 'Shougo/neocomplcache.vim'
 endif
@@ -177,6 +177,8 @@ Plug 'wting/rust.vim', { 'for': 'rust' }
 Plug 'vim-coffee-script', { 'for': 'coffeescript' }
 Plug 'zah/nimrod.vim', { 'for': 'nim' }
 Plug 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex', { 'for': ['tex', 'latex'], 'rtp': 'org.ats-lang.toolats.vim' }
+Plug 'rgrinberg/vim-ocaml', { 'for': 'ocaml' }
+
 " Colors
 
 Plug 'tomasr/molokai'
@@ -354,8 +356,11 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " mark config
 " save and restore global variables
 
-set viminfo='50,<1000,:30,!,n~/.viminfo
-set viminfo+=!
+if has('nvim')
+  set shada='50,<1000,:30,!
+else
+  set viminfo='50,<1000,:30,!,n~/.viminfo
+endif
 
 " rainbow parentheses
 augroup RainbowParentheses
@@ -468,7 +473,7 @@ let g:EasyMotion_mapping_N = '<Leader>K'
 let g:EasyMotion_mapping_j = '<Leader>e'
 let g:EasyMotion_mapping_k = '<Leader>u'
 
-if has('lua')
+if has('nvim')
   "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
