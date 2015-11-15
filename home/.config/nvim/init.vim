@@ -118,8 +118,8 @@ if has('python')
   Plug 'FelikZ/ctrlp-py-matcher', { 'on': ['CtrlP', 'CtrlPBuffer'] }
 endif
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-if has('nvim')
-  "Plug 'Shougo/neocomplete.vim'
+if has('nonnvim')
+  Plug 'Shougo/neocomplete.vim'
 else
   Plug 'Shougo/neocomplcache.vim'
 endif
@@ -473,7 +473,7 @@ let g:EasyMotion_mapping_N = '<Leader>K'
 let g:EasyMotion_mapping_j = '<Leader>e'
 let g:EasyMotion_mapping_k = '<Leader>u'
 
-if has('nvim')
+if has('nonnvim')
   "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
