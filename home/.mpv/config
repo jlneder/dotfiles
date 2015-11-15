@@ -26,7 +26,7 @@ profile-desc = "Anime Smallest"
 ovc=libx264
 #vf-add = scale=w=-2:h=320:noup=2,scale=w=480:h=-2:noup=2
 #sub-scale = 1.1
-ovcopts-add = preset=veryslow,profile=high444,tune=animation,crf=35,level=5.2
+ovcopts-add = preset=veryslow,profile=high444,tune=animation,crf=30,level=5.2
 #ovcopts-add = b-pyramid=normal,keyint_min=24,refs=6,bf=16,partitions=all
 ovcopts-add = strict=experimental
 ovcopts-add = x264-params=b-adapt=2:keyint=240:min-keyint=24:b-pyramid=normal
