@@ -12,8 +12,8 @@ geometry=50%:50%
 autofit-larger=90%x90%
 
 [pseudo-gui]
-geometry=50%:50%
-autofit-larger=90%x90%
+#geometry=50%:50%
+#autofit-larger=90%x90%
 
 [vo.vdpau]
 # Use hardware decoding (might break playback of some h264 files)
